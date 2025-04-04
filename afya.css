@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Smooch+Sans:wght@100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+body{
+	background-color: #EDE6D6;
+}
+h1{
+	text-align: center;
+	font-size: 38px;
+	color: saddlebrown;
+	font-family: Smooch Sans;
+	text-transform: uppercase;
+}
+h2, h3 { 
+	text-align: center;
+	color: #160D08 ;
+	font-size: 30px;
+	font-weight: bolder;
+	border: 5px solid black;
+    border-radius: 20px;
+}
+p{
+	text-align: center;
+	color: #020403;
+	font-family: Ubuntu;
+   font-size: 20px;
+}
+a{
+	padding: 20px;
+	font-size: 1.5rem;
+	text-decoration: none;
+}
+a:hover{
+	background-color: floralwhite;
+	color: palevioletred;
+}
+a:visited{
+	color: #654321 ;
+}
+a:active{
+	color: #A6674C;
+}
+.myclass{
+	color: #80461A ;
+	list-style-type: circle;
+	margin-left: 50px;
+	padding: 10px;
+	text-align: center;
+}
+.patientinfo{
+	background-color: #938359;
+	margin: 55px 50px;
+	padding: 20px;
+	font-family: Ubuntu;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	min-height: 100vh;
+}
+.gender-form {
+    text-align: center;
+  }
+
+  .gender-options {
+    display: flex;
+    text-align: center;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+  }
+  input{
+	margin: 5px;
+  }
+ form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+ } 
+input, select, label, textarea{
+	display: block;
+	margin: auto;
+	text-align: center;
+}
+label{
+	color: #2B1B17;
+	font-size: 18px;
+}
+input, select{
+	width: 60%;
+	padding: 10px;
+	border-radius: 100px;
+}
+textarea{
+	width: 60%;
+	border-radius: 25px;
+}
+[type=submit], [type=reset] {
+	background-color: #666362;
+	margin-top: 7px;
+	color: seashell;
+	opacity: 0.9;
+	font-family: Ubuntu;
+	text-align: center;
+	padding: 10px 20px;
+	cursor: pointer;
+}
+table{
+	width: 85%;
+	border-collapse: collapse;
+	margin-right: auto;
+	margin-left: auto;
+	font-family: Ubuntu;
+}
+th, td{
+	border: 1px solid black;
+	padding: 8px;
+	text-align: center;
+}
+th{
+	background-color: #f2f2f2;
+}
+tr:hover{
+	background-color: #B98663;
+}
+.nav{
+	list-style-type: none;
+	background-color: burlywood ;
+	padding: 15px;
+	overflow: hidden;
+    justify-content: center;
+    display: flex;
+}
+.contact-list{
+	 max-width: 600px;
+     margin: 50px auto;
+     padding: 20px;
+     background-image: url(https://th.bing.com/th/id/OIP.agYZLTCkt_Lo5KFDmEzuIgHaEK?w=3840&h=2160&rs=1&pid=ImgDetMain);
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+li{
+	list-style-type: none;
+	display: block;
+}
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px;
+    gap: 20px;
+}
+
+.gallery-item {
+    flex: 1 1 calc(33.333% - 40px); /* Adjust the percentage for desired column count */
+    margin: 10px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #020403;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.gallery-item img:hover {
+    transform: scale(1.1);
+}
+
+.caption {
+    text-align: center;
+    padding: 10px 0;
+    color: whitesmoke;
+    font-size: 16px;
+}
+.feedback-form {
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    font-family: Ubuntu;
+    background-color:  whitesmoke;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.error-message{
+	color: #FFEB3B;
+	font-size: 20px;
+	text-align: center;
+}
+
+
