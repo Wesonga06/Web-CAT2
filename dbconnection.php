@@ -1,14 +1,17 @@
 <?php
-$servername = "127.0.0.1"; // Use '127.0.0.1' instead of 'localhost' for reliability
-$username = "root"; // Replace with your MySQL username
-$password = ""; // Replace with your MySQL password
-$dbname = "nursing_services"; // Replace with your database name
+$servername = "127.0.0.1"; 
+$username = "root"; 
+$password = ""; 
+$dbname = "nursing_services"; 
 
+// Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    // Log the error or handle the error silently (you can log the error to a file)
+    error_log("Connection failed: " . $conn->connect_error);
+    die(); // Optionally, stop the script execution without revealing sensitive information to the user
 }
-
-echo "Connected successfully!";
 ?>
+

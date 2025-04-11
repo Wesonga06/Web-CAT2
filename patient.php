@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Check if the user is logged in by checking the session
+if (!isset($_SESSION['user_id'])) {
+    // If not logged in, redirect to login page
+    header("Location: loginafya.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,13 +45,14 @@
             <input type="email" id="email" name="email" placeholder="Enter Valid Email" required>
 
             <div class="gender-form">
-              <label for="gender">Gender:</label>
+                <label for="gender">Gender:</label>
                 <div class="gender-options">
-                <input type="radio" id="male" name="gender" value="Male" required> Male
-                <input type="radio" id="female" name="gender" value="Female" required> Female
-                <input type="radio" id="other" name="gender" value="Other" required> Other
+                    <input type="radio" id="male" name="gender" value="Male" required> Male
+                    <input type="radio" id="female" name="gender" value="Female" required> Female
+                    <input type="radio" id="other" name="gender" value="Other" required> Other
                 </div>
             </div>
+            
             <label for="symptoms">Severity of Symptoms:</label>
             <select id="symptoms" name="symptoms" required>
                 <option value="" disabled selected>--Choose one--</option>
@@ -51,6 +63,10 @@
 
             <label for="medical_conditions">Existing Medical Conditions:</label>
             <input type="text" id="medical_conditions" name="medical_conditions" placeholder="Enter Medical Conditions">
+
+            <!-- Added Medical History Section -->
+            <label for="medical_history">Medical History:</label>
+            <textarea id="medical_history" name="medical_history" placeholder="Enter your medical history" rows="4"></textarea>
 
             <h2>Emergency Contact</h2>
             <label for="contact_name">Contact Name:</label>
@@ -73,10 +89,10 @@
         </form>
     </div>
 
- <div class="feedback-form">
+    <div class="feedback-form">
         <h2>Feedback Form</h2>
         <form action="/submit-feedback" method="post">
-            <label for="name">FullName:</label>
+            <label for="name">Full Name:</label>
             <input type="text" id="name" name="name" placeholder="Enter Name" required>
 
             <label for="email">Email:</label>
@@ -90,7 +106,7 @@
                 <option value="rehabilitation">Rehabilitation</option>
             </select>
 
-            <label for="rating">Services Rating:</label>
+            <label for="rating">Service Rating:</label>
             <input type="number" id="rating" name="rating" min="1" max="5" placeholder="Rate 1-5" required>
 
             <label for="comments">Comments:</label>
@@ -99,6 +115,8 @@
             <button type="submit">Submit Feedback</button>
         </form>
     </div>
-     <script src="afya.js"></script>
+
+    <script src="afya.js"></script>
 </body>
 </html>
+
