@@ -5,21 +5,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $phone = $_POST['phone'];
+    $address = $_POST['address'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    if ($_POST['password'] !== $_POST['confirm_password']) {
+        echo "<script>alert('Passwords do not match!'); window.location.href = 'registerafya.php';</script>";
+        exit;
+    }
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo "<script>alert('Invalid email format!'); window.location.href = 'registerafya.php';</script>";
         exit;
     }
 
-    $stmt = $conn->prepare("INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO users (name, email, phone, address, password) VALUES (?, ?, ?, ?, ?)");
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
-    $stmt->bind_param("ssss", $name, $email, $phone, $password);
+    $stmt->bind_param("sssss", $name, $email, $phone, $address, $password);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Successfully signed up!'); window.location.href = 'afya.html';</script>";
+        echo "<script>alert('Successfully signed up!'); window.location.href = 'afya.php';</script>";
     } else {
         if ($conn->errno == 1062) {
             echo "<script>alert('Signup failed! Email already exists.'); window.location.href = 'registerafya.php';</script>";
@@ -33,158 +39,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Nursing Services</title>
-    <link rel="icon" type="text/css" href="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=510,fit=crop,q=95/A3QZD8635wIVOJ44/afya-bora-logo-m7VM66zJPwSPJoxn.png">
-    <style>
-        /* Reset and Center Everything */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Body Styling */
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-color: #f5f5f5;
-    font-family: Arial, sans-serif;
-}
-
-/* Sign-Up Form Container */
-.container {
-    width: 90%;
-    max-width: 450px;
-    background-color: #d4af79; /* Custom color for the background */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin: 20px 0;
-}
-
-/* Heading Styling */
-.container h2 {
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Form Elements */
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Label Styling */
-label {
-    font-size: 14px;
-    font-weight: bold;
-    color: #555;
-    margin-bottom: 5px;
-}
-
-/* Input Fields Styling */
-input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
-    width: 80%;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-/* Focused Input Fields */
-input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, input[type="password"]:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-/* Button Styling */
-button[type="submit"] {
-    width: 80%;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    background-color: #333;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-    background-color: #555;
-}
-
-/* Link Styling */
-.login-link {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #555;
-}
-
-.login-link a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.login-link a:hover {
-    text-decoration: underline;
-}
-
-/* Responsive Design for smaller screens */
-@media (max-width: 600px) {
-    .container {
-        width: 90%;
-        padding: 20px;
-    }
-
-    button[type="submit"], input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
-        width: 100%;
-    }
-}
-
-        </style>
-
+    <title>Sign Up - Afya Bora Nursing Services</title>
+    <link rel="icon" href="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=510,fit=crop,q=95/A3QZD8635wIVOJ44/afya-bora-logo-m7VM66zJPwSPJoxn.png" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="afya.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Sign Up</h2>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="afya.php">
+                <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=510,fit=crop,q=95/A3QZD8635wIVOJ44/afya-bora-logo-m7VM66zJPwSPJoxn.png" alt="Afya Bora Logo" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="afya.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="aboutus.php">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="patient.php">Patient Form</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="order.php">Order</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.php">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-4">
+        <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=510,fit=crop,q=95/A3QZD8635wIVOJ44/afya-bora-logo-m7VM66zJPwSPJoxn.png" alt="Afya Bora Logo" style="width: 100px; margin-bottom: 20px;">
+        <h2 class="text-center">Sign Up</h2>
         <form action="registerafya.php" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-    
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" name="phone" required>
-    
-    <label for="address">Address:</label>
-    <input type="text" id="address" name="address" required>
-    
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
-    
-    <label for="confirm_password">Confirm Password:</label>
-    <input type="password" id="confirm_password" name="confirm_password" required>
-    
-    <button type="submit">Sign Up</button>
-</form>
- <p class="login-link">Already have an account? <a href="loginafya.php">Login here</a></p>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+
+            <button type="submit">Sign Up</button>
+        </form>
+        <p class="login-link">Already have an account? <a href="loginafya.php">Login here</a></p>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -9,10 +9,9 @@ session_start();
     <title>Afya Bora Nursing Services</title>
     <link rel="icon" href="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=510,fit=crop,q=95/A3QZD8635wIVOJ44/afya-bora-logo-m7VM66zJPwSPJoxn.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="afya.css">
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="afya.php">
@@ -24,10 +23,10 @@ session_start();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="afya.php">Home</a>
+                        <a class="nav-link active" href="afya.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="aboutus.html">About Us</a>
+                        <a class="nav-link" href="aboutus.php">About Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="patient.php">Patient Form</a>
@@ -46,7 +45,6 @@ session_start();
         </div>
     </nav>
 
-    <!-- Welcome Message (Dynamic) -->
     <div class="container my-4">
         <?php
         if (isset($_SESSION['name'])) {
@@ -61,13 +59,11 @@ session_start();
 
     <hr>
 
-    <!-- Images -->
     <div class="container text-center my-4">
-        <img src="https://th.bing.com/th/id/R.42e65aa5e00322f938552b33f3c7ae43?rik=Y%2fYgFfCXjm6jAg&pid=ImgRaw&r=0" class="img-fluid" width="40%" alt="Healthcare Team">
-        <img src="https://th.bing.com/th/id/OIP.I2gPBvbCYROj5vea_3_AewHaEK?rs=1&pid=ImgDetMain" class="img-fluid" width="50%" alt="Medical Equipment">
+        <img src="https://th.bing.com/th/id/R.42e65aa5e00322f938552b33f3c7ae43?rik=Y%2fYgFfCXjm6jAg&pid=ImgRaw&r=0" class="img-fluid" alt="Healthcare Team">
+        <img src="https://th.bing.com/th/id/OIP.I2gPBvbCYROj5vea_3_AewHaEK?rs=1&pid=ImgDetMain" class="img-fluid" alt="Medical Equipment">
     </div>
 
-    <!-- Services Table -->
     <div class="container my-4">
         <h2 class="text-center">Services Offered</h2>
         <table class="table table-bordered table-striped">
@@ -102,7 +98,6 @@ session_start();
         </table>
     </div>
 
-    <!-- Contact Information -->
     <div class="container my-4 contact-list">
         <h2 class="text-center">Contact Information</h2>
         <ul class="list-group">
@@ -113,7 +108,6 @@ session_start();
         </ul>
     </div>
 
-    <!-- Bootstrap JS (for navbar toggle) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
