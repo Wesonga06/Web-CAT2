@@ -3,18 +3,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require_once 'dbconnection.php';
 
     $name = $_POST['name'];
-    $email = $_POST['email'];
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $phone = $_POST['phone'];
-    $address = $_POST['address'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-    $stmt = $conn->prepare("INSERT INTO users (name, email, phone, address, password) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("sssss", $name, $email, $phone, $address, $password);
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "<script>alert('Invalid email format!'); window.location.href = 'registerafya.php';</script>";
+        exit;
+    }
+
+    $stmt = $conn->prepare("INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)");
+    if (!$stmt) {
+        die("Prepare failed: " . $conn->error);
+    }
+    $stmt->bind_param("ssss", $name, $email, $phone, $password);
 
     if ($stmt->execute()) {
         echo "<script>alert('Successfully signed up!'); window.location.href = 'afya.html';</script>";
     } else {
-        echo "<script>alert('Signup failed! Email may already exist. Please try again.'); window.location.href = 'registerafya.php';</script>";
+        if ($conn->errno == 1062) {
+            echo "<script>alert('Signup failed! Email already exists.'); window.location.href = 'registerafya.php';</script>";
+        } else {
+            echo "<script>alert('Signup failed! Error: " . $stmt->error . "'); window.location.href = 'registerafya.php';</script>";
+        }
     }
 
     $stmt->close();

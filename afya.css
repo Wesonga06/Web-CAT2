@@ -126,7 +126,6 @@ tr:hover{
 	list-style-type: none;
 	background-color: burlywood ;
 	padding: 15px;
-	overflow: hidden;
     justify-content: center;
     display: flex;
 }

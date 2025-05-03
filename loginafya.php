@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT id, password FROM users WHERE email = ?");
+    $stmt = $conn->prepare("SELECT user_id, password FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['email'] = $email;
 
-            echo "<script>alert('Successfully logged in!'); window.location.href = 'afya.html';</script>";
+            echo "<script>alert('Successfully logged in!'); window.location.href = 'afya.php';</script>";
         } else {
             echo "<script>alert('Incorrect password!'); window.location.href = 'loginafya.php';</script>";
         }

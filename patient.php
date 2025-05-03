@@ -20,7 +20,7 @@ if (!isset($_SESSION['user_id'])) {
 </head>
 <body>
     <div class="nav">
-        <a href="afya.html">Home</a>
+        <a href="afya.php">Home</a>
         <a href="aboutus.html">About us</a>
         <a href="patient.php">Patient Form</a>
         <a href="order.php">Order</a>

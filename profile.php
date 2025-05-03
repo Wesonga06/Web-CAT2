@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="nav">
-        <a href="afya.html">Home</a>
+        <a href="afya.php">Home</a>
         <a href="aboutus.html">About Us</a>
         <a href="patient.php">Patient Form</a>
         <a href="order.php">Order</a>

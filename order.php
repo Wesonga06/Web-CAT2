@@ -15,7 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("iss", $_SESSION['user_id'], $order_type, $order_details);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Your request has been placed successfully!'); window.location.href = 'afya.html';</script>";
+        echo "<script>alert('Your request has been placed successfully!'); window.location.href = 'afya.php';</script>";
     } else {
         echo "<script>alert('Failed to place request! Please try again.'); window.location.href = 'order.php';</script>";
     }
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Request Nursing Services</title>
     <link rel="icon" type="text/css" href="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=510,fit=crop,q=95/A3QZD8635wIVOJ44/afya-bora-logo-m7VM66zJPwSPJoxn.png">
      <div class="nav">
-         <a href="afya.html" target="blank">Home</a>
+         <a href="afya.php" target="blank">Home</a>
         <a href="aboutus.html" target="blank">About us</a>
         <a href="patient.php" target="blank"> Patient Form</a>
         <a href="order.php" target="blank">Order</a>
