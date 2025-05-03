@@ -1,0 +1,63 @@
+/* Existing styles */
+body {
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-image: url('https://th.bing.com/th/id/OIP.xgCh6oa1duxrzcNgsWROzwHaEK?rs=1&pid=ImgDetMain');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+.navbar-brand img {
+    border-radius: 50%;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    overflow: visible;
+}
+
+/* Gallery styling */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.gallery-item {
+    text-align: center;
+    width: 300px; /* Fixed width for consistency */
+    height: 250px; /* Fixed height for the container */
+}
+
+.gallery-item img {
+    width: 100%; /* Fill the container */
+    height: 200px; /* Fixed height for the image */
+    object-fit: cover; /* Scale and crop to fit */
+    border-radius: 5px;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.caption {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+body {
+    padding-bottom: 20px;
+}
