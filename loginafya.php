@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->fetch() && password_verify($password, $hashed_password)) {
         $_SESSION['user_id'] = $id;
-        $_SESSION['user_name'] = $name;
+        $_SESSION['name'] = $name;
         echo "<script>alert('Login successful!'); window.location.href = 'afya.php';</script>";
     } else {
         echo "<script>alert('Invalid email or password.'); window.location.href = 'loginafya.php';</script>";
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="afya.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="afya.php">
                 <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=510,fit=crop,q=95/A3QZD8635wIVOJ44/afya-bora-logo-m7VM66zJPwSPJoxn.png" alt="Afya Bora Logo" height="40">
